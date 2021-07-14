@@ -1,0 +1,33 @@
+$primary: #FF385C;
+
+$theme-colors: (
+        "primary": $primary,
+        "secondary": #3881ff,
+        "dark": #010101,
+);
+
+@import "modules/button.module";
+@import "modules/card.module";
+@import "~bootstrap/scss/bootstrap";
+
+// typography
+p, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+input {
+  border-radius: 50rem !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Sizes
+.vh-75 {
+  height: 75vh;
+}
+
+.hover-text-primary:hover {
+  color: $primary !important;
+}
