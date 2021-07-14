@@ -30,7 +30,7 @@ const ListingDetails = (props: { listing: Listing }) => {
                             <hr/>
                             <div>
                                 <h5>Entire home</h5>
-                                <p>You'll have the treehouse to yourself.</p>
+                                <p>You&apos;ll have the treehouse to yourself.</p>
                             </div>
                             <hr/>
                             <div>

@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const SearchForm = (props: {}) => {
     const {} = props;
-    const [checkInDate, setCheckInDate] = React.useState(new Date());
-    const [checkOutDate, setCheckOutDate] = React.useState(null);
+    const [checkInDate, setCheckInDate] = React.useState<Date | null>(new Date());
+    const [checkOutDate, setCheckOutDate] = React.useState<Date | null>(new Date());
 
     // @ts-ignore
     return (
@@ -24,7 +24,7 @@ const SearchForm = (props: {}) => {
                         <label htmlFor="check-in">Check in date</label>
                         <DatePicker
                             selected={checkInDate}
-                            onChange={date => setCheckInDate(date)}
+                            onChange={(date: Date | null) => date && setCheckInDate(date)}
                             className="form-control form-control-lg"
                             minDate={new Date()}
                         />
@@ -32,8 +32,8 @@ const SearchForm = (props: {}) => {
                     <div className="col-md-3 mb-3 form-group">
                         <label htmlFor="check-out">Check in out</label>
                         <DatePicker
-                            selected={checkOutDate} 
-                            onChange={date => setCheckOutDate(date)}
+                            selected={checkOutDate}
+                            onChange={(date: Date | null) => setCheckOutDate(date)}
                             className="form-control form-control-lg"
                             minDate={new Date()}
                         />
@@ -49,8 +49,6 @@ const SearchForm = (props: {}) => {
     );
 };
 
-SearchForm.propTypes = {
-
-};
+SearchForm.propTypes = {};
 
 export default SearchForm;

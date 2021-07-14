@@ -9,6 +9,7 @@ const LocationGridItem = (props: {location: Location}) => {
         <div className="row">
             <div className="col-3">
                 <div className="card">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={location.bannerSrc} alt={location.name} className="card-image"/>
                 </div>
             </div>

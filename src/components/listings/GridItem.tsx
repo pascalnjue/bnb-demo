@@ -9,6 +9,7 @@ const ListingGridItem = (props: { listing: Listing }) => {
 
     return (
         <div className="card">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={listing.bannerSrc} alt={listing.title} className="card-image"/>
             <div className="card-img-overlay">
                 <div className="d-flex align-items-end h-100">

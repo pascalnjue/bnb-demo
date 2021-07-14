@@ -6,6 +6,7 @@ const Banner = () => {
         <section className="vh-75">
             <div className="container h-100 pt-3 pb-5">
                 <div className="card">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={houseImage.src} alt="" className="card-image"/>
                     <div className="card-img-overlay">
                         <div className="d-flex align-items-end h-100">
