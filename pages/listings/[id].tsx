@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from "../../src/components/main/Layout";
-import {useRouter} from 'next/router';
 import Listing from "../../src/types/listing";
 import {listings} from "../../data/dummy";
 
+// @ts-ignore
 export const getServerSideProps = async ({query}) => {
     const {id} = query;
 
