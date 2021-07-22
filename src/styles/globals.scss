@@ -6,6 +6,8 @@ $theme-colors: (
         "dark": #010101,
 );
 
+$rounded-border-radius: 1rem;
+
 @import "modules/button.module";
 @import "modules/card.module";
 @import "~bootstrap/scss/bootstrap";
@@ -30,4 +32,8 @@ a {
 
 .hover-text-primary:hover {
   color: $primary !important;
+}
+
+.rounded {
+  border-radius: $rounded-border-radius !important;
 }
