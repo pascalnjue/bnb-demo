@@ -32,6 +32,7 @@ const ListingDetails = (props: { listing: Listing }) => {
                         <div className="col-md-9">
                             <div className="vh-75">
                                 <div className="card">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={listing.bannerSrc} alt="" className="card-image"/>
                                 </div>
                             </div>
