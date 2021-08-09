@@ -1,3 +1,5 @@
+import {apiV1} from "../src/global";
+
 type Page = {
     title: string,
     href: string,
@@ -34,12 +36,10 @@ export const locationsPage: Page = {
     label: "Locations",
 }
 
-export const apiV1Host = "http://127.0.0.1:8000/api/v1";
-
 export const apiV1Endpoints = {
-    featuredListings: `${apiV1Host}/listings/featured`,
-    singleListing: (slug: string) => `${apiV1Host}/listings/${slug}`,
+    featuredListings: `${apiV1}/listings/featured`,
+    singleListing: (slug: string) => `${apiV1}/listings/${slug}`,
 
     // Locations
-    featuredLocations: `${apiV1Host}/locations/featured`,
+    featuredLocations: `${apiV1}/locations/featured`,
 }
