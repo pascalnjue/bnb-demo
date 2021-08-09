@@ -1,6 +1,7 @@
 const endpoints = {
     // bookings
     bookings: "/bookings/",
+    bookingDetails: (id: string | string[] | undefined) => `/bookings/${id}`,
 
     //users and auth
     login: "/token/login/",
