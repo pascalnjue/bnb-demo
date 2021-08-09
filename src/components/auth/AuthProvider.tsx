@@ -7,7 +7,7 @@ import endpoints from "../../helpers/endpoints";
 
 const AuthContext = React.createContext<Partial<AuthContextProps>>({});
 
-const AuthProvider = ({children}: PageProps): React.ReactNode => {
+const AuthProvider = ({children}: PageProps) => {
     const [loadingUser, setLoadingUser] = useState(true);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
 

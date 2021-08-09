@@ -11,7 +11,6 @@ export const getServerSideProps = async ({query}) => {
 
     const listing = await fetch(apiV1Endpoints.singleListing(slug))
         .then(response => response.json())
-    .then(listing => ({...listing, amenities: []}))
 
     return {
         props: {listing}

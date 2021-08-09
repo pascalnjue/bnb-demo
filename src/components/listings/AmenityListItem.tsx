@@ -8,7 +8,7 @@ const AmenityListItem = (props: { amenity: Amenity }) => {
     return (
         <div className="row">
             <div className="col-1">
-                {amenity.bsIcon && <i className={`bi bi-${amenity.bsIcon}`}/>}
+                {amenity.name === "WiFi" && <i className={`bi bi-wifi`}/>}
             </div>
             <div className="col-11">
                 <p>{amenity.name}</p>
