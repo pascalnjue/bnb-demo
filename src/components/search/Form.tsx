@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -40,7 +39,7 @@ const SearchForm = (props: {}) => {
                     </div>
                     <div className="col-md-3 mb-3 form-group">
                         <div className="d-flex align-items-end h-100">
-                            <button className="btn btn-primary btn-lg w-100">Find Place</button>
+                            <button className="btn btn-primary btn-lg w-100">Find a Place</button>
                         </div>
                     </div>
                 </div>

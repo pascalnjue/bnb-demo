@@ -1,10 +1,21 @@
 import React from 'react';
 import Layout from "../src/components/main/Layout";
-import {discoverPage} from "../data/main";
-import {listings} from "../data/dummy";
+import {apiV1Endpoints, discoverPage} from "../data/main";
 import ListingGridItem from "../src/components/listings/GridItem";
+import Listing from "../src/types/listing";
 
-const Discover = () => {
+
+export const getServerSideProps = async () => {
+    const listings = await fetch(apiV1Endpoints.featuredListings)
+        .then(response => response.json())
+    return {
+        props: {listings}
+    }
+}
+
+const Discover = (props: {listings: Listing[]}) => {
+    const {listings} = props;
+
     return (
         <Layout title={discoverPage.title}>
             <section>

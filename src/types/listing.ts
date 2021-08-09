@@ -3,15 +3,17 @@ import Location from "./location";
 export type Amenity = {
     id: number,
     name: string,
-    bsIcon?: string,
 }
 
-type Listing = {
+interface Listing {
     id: number,
     title: string,
+    slug: string,
+    description: string,
     location: Location,
-    bannerSrc: string,
+    banner: string,
     amenities: Amenity[],
+    bedrooms: number,
 }
 
 export default Listing;

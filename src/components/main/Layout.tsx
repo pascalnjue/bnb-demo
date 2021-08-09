@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Login from "../auth/Login";
+import PasswordReset from "../auth/PasswordReset";
 
 const Layout = (props: {title: string, children: any}) => {
     const {title, children} = props;
@@ -19,6 +21,10 @@ const Layout = (props: {title: string, children: any}) => {
                 {children}
             </main>
             <Footer/>
+
+            {/* global modals */}
+            <Login/>
+            <PasswordReset/>
         </>
     );
 };

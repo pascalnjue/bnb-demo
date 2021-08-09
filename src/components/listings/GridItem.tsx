@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const ListingGridItem = (props: { listing: Listing }) => {
     const {listing} = props;
-    const listingDetailsHref = `/listings/${listing.id}`;
+    const listingDetailsHref = `/listings/${listing.slug}`;
 
     return (
         <div className="card">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={listing.bannerSrc} alt={listing.title} className="card-image"/>
+            <img src={listing.banner} alt={listing.title} className="card-image"/>
             <div className="card-img-overlay">
                 <div className="d-flex align-items-end h-100">
                     <div>

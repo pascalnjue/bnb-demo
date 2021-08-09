@@ -16,6 +16,9 @@ const FeaturedListings = (props: { featuredListings: Listing[] }) => {
                             <ListingGridItem listing={listing}/>
                         </div>
                     ))}
+                    {featuredListings.length === 0 && (
+                        <p>No listings found at the moment.</p>
+                    )}
                 </div>
             </div>
         </section>

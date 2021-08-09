@@ -1,16 +1,18 @@
 import React from 'react';
 import Layout from "../../src/components/main/Layout";
 import Listing from "../../src/types/listing";
-import {listings} from "../../data/dummy";
-import houseImage from "../../src/dummy_images/house.jpeg";
 import AmenityListItem from "../../src/components/listings/AmenityListItem";
 import ListingBookingForm from "../../src/components/listings/BookingForm";
+import {apiV1Endpoints} from "../../data/main";
 
 // @ts-ignore
 export const getServerSideProps = async ({query}) => {
-    const {id} = query;
+    const {slug} = query;
 
-    const listing: Listing = listings.filter(listing => listing.id = id)[0];
+    const listing = await fetch(apiV1Endpoints.singleListing(slug))
+        .then(response => response.json())
+    .then(listing => ({...listing, amenities: []}))
+
     return {
         props: {listing}
     }
@@ -29,30 +31,29 @@ const ListingDetails = (props: { listing: Listing }) => {
                     </div>
 
                     <div className="row">
-                        <div className="col-md-9">
+                        <div className="col-md-9 mb-3">
                             <div className="vh-75">
                                 <div className="card">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={listing.bannerSrc} alt="" className="card-image"/>
+                                    <img src={listing.banner} alt="" className="card-image"/>
                                 </div>
                             </div>
-                            <h4 className="mt-4">House hosted by P</h4>
-                            <p>2 guests . 2 bedroom . 1 bathroom</p>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 pb-3">
+                            <h4 className="mt-4 mb-1">House hosted by P</h4>
+                            <p>
+                                <i className="bi bi-check2 text-primary"/> {listing.bedrooms} bedrooms &nbsp;
+                                <i className="bi bi-check2 text-primary"/> {listing.amenities.length} Amenities
+                            </p>
                             <hr/>
+                        </div>
+                        <div className="col-md-9 mb-3">
                             <div>
                                 <p>
-                                    This cabin is located 12Km from the city, has the best scenery, Lorem ipsum dolor
-                                    sit amet, consectetur adipisicing elit. Ad culpa expedita
-                                    laudantium maxime nam necessitatibus nemo, sit temporibus voluptas voluptatibus?
-                                    Autem dolorem magnam nesciunt numquam, odio repellendus voluptate! Iste, sed. <br/>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, animi asperiores
-                                    debitis dolore, doloremque earum esse ex facilis impedit numquam perspiciatis porro
-                                    quaerat reprehenderit sunt tempore, temporibus tenetur ullam unde.
+                                    {listing.description}
                                 </p>
-                            </div>
-                            <hr/>
-                            <div>
-                                <h5>Places for sleeping</h5>
                             </div>
                             <hr/>
                             <div>
@@ -63,11 +64,14 @@ const ListingDetails = (props: { listing: Listing }) => {
                                             <AmenityListItem amenity={amenity}/>
                                         </div>
                                     ))}
+                                    {listing.amenities.length === 0 && (
+                                        <p>Listing does not have amenities at the moment.</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <ListingBookingForm/>
+                            <ListingBookingForm listing={listing}/>
                         </div>
                     </div>
                 </div>

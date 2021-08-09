@@ -33,3 +33,13 @@ export const locationsPage: Page = {
     href: "/locations",
     label: "Locations",
 }
+
+export const apiV1Host = "http://127.0.0.1:8000/api/v1";
+
+export const apiV1Endpoints = {
+    featuredListings: `${apiV1Host}/listings/featured`,
+    singleListing: (slug: string) => `${apiV1Host}/listings/${slug}`,
+
+    // Locations
+    featuredLocations: `${apiV1Host}/locations/featured`,
+}

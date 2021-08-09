@@ -1,7 +1,7 @@
 type Location = {
     id: number,
     name: string,
-    bannerSrc: string,
+    banner: string,
 }
 
 export default Location;
