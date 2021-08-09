@@ -15,7 +15,7 @@ const Footer = () => {
                             repudiandae tempore tenetur, vero voluptates!
                         </p>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-6">
                         <h3 className="mb-5">Quick Links</h3>
                         <p>
                             <Link href={homePage.href}>
@@ -43,22 +43,8 @@ const Footer = () => {
                             </Link>
                         </p>
                     </div>
-                    <div className="col-md-3">
-                        <h3 className="mb-5">Contact Details</h3>
-                        <p>
-                            Tel: <a href="tel:070000000">0798 765 432</a>
-                        </p>
-                        <p>
-                            Email: <a href="mailto:info@bnb.com">info@bnb.com</a>
-                        </p>
-                        <p className="mt-4">
-                            P.O Box 90205, <br/>
-                            Nairobi, Kenya.
-                        </p>
-                    </div>
                 </div>
                 <hr/>
-                <p className="text-center">BNB &copy; {new Date().getFullYear()}. Design by Pascal Njue</p>
             </div>
         </footer>
     );
