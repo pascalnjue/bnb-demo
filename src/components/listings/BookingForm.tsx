@@ -97,8 +97,8 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
                     <div className="form-group mb-3">
                         <label htmlFor="checkOutDate">Price:</label>
                         <input
-                            type="number"
-                            value={totalPrice}
+                            type="text"
+                            value={totalPrice + " " + listing.currency}
                             className="form-control"
                             disabled/>
                     </div>
