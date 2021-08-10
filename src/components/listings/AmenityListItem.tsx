@@ -6,12 +6,14 @@ const AmenityListItem = (props: { amenity: Amenity }) => {
     const {amenity} = props;
 
     return (
-        <div className="row">
-            <div className="col-1">
-                {amenity.name === "WiFi" && <i className={`bi bi-wifi`}/>}
-            </div>
-            <div className="col-11">
-                <p>{amenity.name}</p>
+        <div className="border-bottom mb-3 pb-2">
+            <div className="d-flex">
+                <div className="col-11">
+                    <p>{amenity.name}</p>
+                </div>
+                <div className="col-1">
+                    <p>{amenity.number}</p>
+                </div>
             </div>
         </div>
     );

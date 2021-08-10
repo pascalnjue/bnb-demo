@@ -6,8 +6,6 @@ export interface Booking {
     user: User;
     check_in_date: string;
     check_out_date: string;
-    price_per_night: number;
     number_of_guests: number;
     paid: boolean;
-    currency: string;
 }

@@ -56,10 +56,10 @@ const ListingDetails = (props: { listing: Listing }) => {
                             </div>
                             <hr/>
                             <div>
-                                <h5 className="mb-2">What the place offers</h5>
+                                <h5 className="mb-3">What the place offers:</h5>
                                 <div className="row">
                                     {listing.amenities.map(amenity => (
-                                        <div className="col-md-6" key={amenity.id}>
+                                        <div className="col-md-4" key={amenity.id}>
                                             <AmenityListItem amenity={amenity}/>
                                         </div>
                                     ))}
@@ -67,6 +67,11 @@ const ListingDetails = (props: { listing: Listing }) => {
                                         <p>Listing does not have amenities at the moment.</p>
                                     )}
                                 </div>
+                            </div>
+                            <hr/>
+                            <div>
+                                <h5 className="mb-3">Price per night:</h5>
+                                <p>{listing.price_per_night} {listing.currency}</p>
                             </div>
                         </div>
                         <div className="col-md-3">

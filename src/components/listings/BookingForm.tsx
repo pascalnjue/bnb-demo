@@ -5,6 +5,7 @@ import {useAuth} from "../auth/AuthProvider";
 import {makeRequest, makeUrl} from "../../helpers/network";
 import endpoints from "../../helpers/endpoints";
 import {useRouter} from "next/router";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface ListingBookingFormProps {
     listing: Listing;
@@ -12,8 +13,11 @@ interface ListingBookingFormProps {
 
 
 const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
-    const [checkInDate, setCheckInDate] = React.useState<Date | null>(new Date());
-    const [checkOutDate, setCheckOutDate] = React.useState<Date | null>(new Date());
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1)
+    const [checkInDate, setCheckInDate] = React.useState<Date | null>(today);
+    const [checkOutDate, setCheckOutDate] = React.useState<Date | null>(tomorrow);
     const [numberOfGuests, setNumberOfGuests] = React.useState("1");
     const [loading, setLoading] = React.useState(false);
     const {currentUser} = useAuth();
@@ -45,6 +49,12 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
             })
     }
 
+    // @ts-ignore
+    const diffTime = Math.abs(checkOutDate - checkInDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    const totalPrice = listing.price_per_night * diffDays;
+
     return (
         <div className="rounded border shadow-sm">
             <div className="card-body">
@@ -56,7 +66,10 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
                             selected={checkInDate}
                             onChange={(date: Date | null) => date && setCheckInDate(date)}
                             className="form-control form-control-lg"
-                            minDate={checkInDate ?? new Date()}
+                            selectsStart
+                            minDate={today}
+                            startDate={checkInDate}
+                            endDate={checkOutDate}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -65,7 +78,10 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
                             selected={checkOutDate}
                             onChange={(date: Date | null) => date && setCheckOutDate(date)}
                             className="form-control form-control-lg"
-                            minDate={checkInDate ?? new Date()}
+                            minDate={checkInDate}
+                            selectsEnd
+                            startDate={checkInDate}
+                            endDate={checkOutDate}
                         />
                     </div>
                     <div className="form-group mb-3">
@@ -77,6 +93,14 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
                             defaultValue={1}
                             min={1}
                             className="form-control"/>
+                    </div>
+                    <div className="form-group mb-3">
+                        <label htmlFor="checkOutDate">Price:</label>
+                        <input
+                            type="number"
+                            value={totalPrice}
+                            className="form-control"
+                            disabled/>
                     </div>
                     <button className="btn w-100 btn-primary" disabled={loading}>
                         {loading ? "Loading..." : "Book Now"}</button>

@@ -127,7 +127,7 @@ const BookingDetails = () => {
                                             <tbody>
                                             <tr>
                                                 <th>Price per night</th>
-                                                <td>{booking.price_per_night} ({booking.currency})</td>
+                                                <td>{booking.listing.price_per_night} ({booking.listing.currency})</td>
                                             </tr>
                                             <tr>
                                                 <th>Check in Date:</th>
