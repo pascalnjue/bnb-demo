@@ -4,6 +4,8 @@ import {discoverPage, homePage} from "../../../data/main";
 import Link from "next/link";
 import {useAuth} from "../auth/AuthProvider";
 import {getLoginModal} from "../../helpers/components";
+import endpoints from "../../helpers/endpoints";
+import {makeRequest, makeUrl} from "../../helpers/network";
 
 const Navbar = () => {
     const {loadingUser, currentUser} = useAuth();
@@ -23,6 +25,13 @@ const Navbar = () => {
         if (loginModal) {
             loginModal.show();
         }
+    }
+
+    const handleLogout = () => {
+        makeRequest({url: makeUrl(endpoints.logout), method: "POST"})
+            .then(() => {
+
+            })
     }
 
     return (
@@ -73,7 +82,13 @@ const Navbar = () => {
                                             <li><a className="dropdown-item" href="#">My Account</a></li>
                                             <li><a className="dropdown-item" href="#">My Bookings</a></li>
                                             <li><a className="dropdown-item" href="#">Account Settings</a></li>
-                                            <li><a className="dropdown-item" href="#">Log Out</a></li>
+                                            <li>
+                                                <span
+                                                    onClick={handleLogout}
+                                                    className="dropdown-item cursor-pointer">
+                                                    Log Out
+                                                </span>
+                                            </li>
                                         </ul>
                                     </li>
                                     :
