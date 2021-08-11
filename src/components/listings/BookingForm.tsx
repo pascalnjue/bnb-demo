@@ -6,6 +6,7 @@ import {makeRequest, makeUrl} from "../../helpers/network";
 import endpoints from "../../helpers/endpoints";
 import {useRouter} from "next/router";
 import "react-datepicker/dist/react-datepicker.css";
+import {getLoginModal} from "../../helpers/components";
 
 interface ListingBookingFormProps {
     listing: Listing;
@@ -49,6 +50,17 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
             })
     }
 
+    const showLoginModal = async (event: any) => {
+        event.preventDefault();
+
+        const loginModal = await getLoginModal();
+
+        if (loginModal) {
+            localStorage.setItem("bookAfterAuth", "true");
+            loginModal.show();
+        }
+    }
+
     // @ts-ignore
     const diffTime = Math.abs(checkOutDate - checkInDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -59,7 +71,7 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
         <div className="rounded border shadow-sm">
             <div className="card-body">
                 <h5 className="mb-3">Add dates for prices</h5>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={currentUser ? handleSubmit : showLoginModal}>
                     <div className="form-group mb-3">
                         <label htmlFor="checkInDate">Check in date:</label>
                         <DatePicker
@@ -102,8 +114,9 @@ const ListingBookingForm = ({listing}: ListingBookingFormProps) => {
                             className="form-control"
                             disabled/>
                     </div>
-                    <button className="btn w-100 btn-primary" disabled={loading}>
-                        {loading ? "Loading..." : "Book Now"}</button>
+                    <button className="btn w-100 btn-primary" disabled={loading} id="bookButton">
+                        {loading ? "Loading..." : "Book Now"}
+                    </button>
                 </form>
             </div>
         </div>

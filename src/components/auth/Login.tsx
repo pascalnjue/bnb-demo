@@ -27,6 +27,11 @@ const Login = () => {
                 } else if (json.auth_token) {
                     localStorage.setItem(strings.accessToken, json.auth_token);
                     fetchCurrentUser();
+                    if (localStorage.getItem("bookAfterAuth")) {
+                        setTimeout(() => {
+                            document.getElementById("bookButton")?.click();
+                        }, 2000);
+                    }
                     document.getElementById("loginModalDismiss")?.click();
                     //    TODO: show alert
                 }
@@ -45,6 +50,13 @@ const Login = () => {
         const passwordResetModal = await getPasswordResetModal();
         passwordResetModal.show();
     }
+
+    React.useEffect(() => {
+        const loginModal = document.getElementById('loginModal')
+        loginModal?.addEventListener('hidden.bs.modal', _ => {
+            localStorage.removeItem("bookAfterAuth");
+        })
+    }, []);
 
     return (
         <div className="modal fade" id="loginModal">

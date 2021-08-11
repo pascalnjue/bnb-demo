@@ -5,8 +5,10 @@ import ListingGridItem from "../src/components/listings/GridItem";
 import Listing from "../src/types/listing";
 
 
-export const getServerSideProps = async () => {
-    const listings = await fetch(apiV1Endpoints.featuredListings)
+// @ts-ignore
+export const getServerSideProps = async ({query}) => {
+    const url = `${apiV1Endpoints.featuredListings}?${new URLSearchParams(query)}`;
+    const listings = await fetch(url)
         .then(response => response.json())
     return {
         props: {listings}

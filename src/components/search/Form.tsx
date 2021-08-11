@@ -12,7 +12,7 @@ const SearchForm = () => {
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
-        router.push(`/discover?location=${location.toLowerCase()}`);
+        router.push(`/discover?location__name=${location.toLowerCase()}`);
     }
 
     // @ts-ignore

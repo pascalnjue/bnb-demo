@@ -4,11 +4,9 @@ import {discoverPage, homePage} from "../../../data/main";
 import Link from "next/link";
 import {useAuth} from "../auth/AuthProvider";
 import {getLoginModal} from "../../helpers/components";
-import endpoints from "../../helpers/endpoints";
-import {makeRequest, makeUrl} from "../../helpers/network";
 
 const Navbar = () => {
-    const {loadingUser, currentUser} = useAuth();
+    const {loadingUser, currentUser, logOutUser} = useAuth();
 
     const toggleAccountDropdown = async () => {
         const bootstrap = await import("bootstrap");
@@ -25,13 +23,6 @@ const Navbar = () => {
         if (loginModal) {
             loginModal.show();
         }
-    }
-
-    const handleLogout = () => {
-        makeRequest({url: makeUrl(endpoints.logout), method: "POST"})
-            .then(() => {
-
-            })
     }
 
     return (
@@ -84,7 +75,7 @@ const Navbar = () => {
                                             <li><a className="dropdown-item" href="#">Account Settings</a></li>
                                             <li>
                                                 <span
-                                                    onClick={handleLogout}
+                                                    onClick={logOutUser}
                                                     className="dropdown-item cursor-pointer">
                                                     Log Out
                                                 </span>

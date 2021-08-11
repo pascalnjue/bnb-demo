@@ -38,6 +38,14 @@ const ListingDetails = (props: { listing: Listing }) => {
                                 </div>
                             </div>
                         </div>
+                        <div className="col-md-3 h-100 overflow-auto">
+                            {listing.images.map(image => (
+                                <div className="mb-3" key={image.id}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={image.image} alt={listing.title} className="w-100 rounded shadow-sm"/>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12 pb-3">

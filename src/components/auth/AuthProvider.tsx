@@ -18,9 +18,16 @@ const AuthProvider = ({children}: PageProps) => {
             makeRequest({url: makeUrl(endpoints.me), method: "GET"})
                 .then(json => {
                     if (json.id) {
-                        setLoadingUser(false);
                         setCurrentUser(json);
+                    } else {
+                        localStorage.removeItem(strings.accessToken);
                     }
+                })
+                .catch(error => {
+                    console.log("error getting current user:", error);
+                })
+                .finally(() => {
+                    setLoadingUser(false);
                 })
         } else {
             setLoadingUser(false);
@@ -28,10 +35,19 @@ const AuthProvider = ({children}: PageProps) => {
         }
     }
 
+    const logOutUser = () => {
+        makeRequest({url: makeUrl(endpoints.logout), method: "POST"})
+            .then(() => {
+                localStorage.removeItem(strings.accessToken);
+                window.location.reload();
+            })
+    }
+
     const authState = {
         loadingUser,
         currentUser,
         fetchCurrentUser,
+        logOutUser,
     };
 
     React.useEffect(() => {

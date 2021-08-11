@@ -1,9 +1,14 @@
 import Location from "./location";
 
-export type Amenity = {
+export interface Amenity {
     id: number;
     name: string;
     number: string;
+}
+
+export interface ListingImage {
+    id: number;
+    image: string;
 }
 
 interface Listing {
@@ -17,6 +22,7 @@ interface Listing {
     bedrooms: number;
     price_per_night:number;
     currency: string;
+    images: ListingImage[];
 }
 
 export default Listing;
