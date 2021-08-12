@@ -9,6 +9,7 @@ const endpoints = {
     passwordReset: "/users/reset_password/",
     passwordChange: "/users/reset_password_confirm/",
     me: "/users/me/",
+    register: "/users/",
 }
 
 export default endpoints;

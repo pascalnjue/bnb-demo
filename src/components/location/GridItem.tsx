@@ -7,7 +7,7 @@ const LocationGridItem = (props: { location: Location }) => {
     const {location} = props;
 
     return (
-        <Link href={`/discover/?location__name=${location.name}`}>
+        <Link href={`/discover/?location_name=${location.name}`}>
             <a>
                 <div className="row">
                     <div className="col-3">

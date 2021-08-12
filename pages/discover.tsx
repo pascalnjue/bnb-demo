@@ -29,6 +29,11 @@ const Discover = (props: {listings: Listing[]}) => {
                                 <ListingGridItem listing={listing}/>
                             </div>
                         ))}
+                        {listings.length === 0 && (
+                            <div className="col-12">
+                                <p>No listings found.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </section>

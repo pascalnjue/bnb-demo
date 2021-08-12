@@ -8,9 +8,9 @@ import {Booking} from "../../src/types/booking";
 const BookingDetails = () => {
     const [payingInFull, setPayingInFull] = React.useState(true);
     const [booking, setBooking] = React.useState<Booking | null>(null);
-
     const router = useRouter();
     const {id} = router.query;
+
     React.useEffect(() => {
         if (id)
             makeRequest({url: makeUrl(endpoints.bookingDetails(id)), method: "GET"})

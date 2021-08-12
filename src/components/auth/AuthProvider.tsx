@@ -37,8 +37,8 @@ const AuthProvider = ({children}: PageProps) => {
 
     const logOutUser = () => {
         makeRequest({url: makeUrl(endpoints.logout), method: "POST"})
-            .then(() => {
-                localStorage.removeItem(strings.accessToken);
+            .catch(() => {
+                localStorage.removeItem(strings.accessToken)
                 window.location.reload();
             })
     }

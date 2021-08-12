@@ -3,7 +3,7 @@ import NavLink from "next/link";
 import {discoverPage, homePage} from "../../../data/main";
 import Link from "next/link";
 import {useAuth} from "../auth/AuthProvider";
-import {getLoginModal} from "../../helpers/components";
+import {getLoginModal, getRegisterModal} from "../../helpers/components";
 
 const Navbar = () => {
     const {loadingUser, currentUser, logOutUser} = useAuth();
@@ -22,6 +22,14 @@ const Navbar = () => {
 
         if (loginModal) {
             loginModal.show();
+        }
+    }
+
+    const showRegisterModal = async () => {
+        const registerModal = await getRegisterModal();
+
+        if (registerModal) {
+            registerModal.show();
         }
     }
 
@@ -70,9 +78,21 @@ const Navbar = () => {
                                                     {currentUser.first_name} {currentUser.last_name}
                                                 </span>
                                             </li>
-                                            <li><a className="dropdown-item" href="#">My Account</a></li>
-                                            <li><a className="dropdown-item" href="#">My Bookings</a></li>
-                                            <li><a className="dropdown-item" href="#">Account Settings</a></li>
+                                            <li>
+                                                <Link href={"/account"}>
+                                                    <a className="dropdown-item">My Account</a>
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href={"/account/bookings"}>
+                                                    <a className="dropdown-item">My Bookings</a>
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link href={"/account/settings"}>
+                                                    <a className="dropdown-item">Account Settings</a>
+                                                </Link>
+                                            </li>
                                             <li>
                                                 <span
                                                     onClick={logOutUser}
@@ -92,9 +112,11 @@ const Navbar = () => {
                                             </button>
                                         </li>
                                         <li className="nav-item">
-                                            <NavLink href={discoverPage.href}>
-                                                <button className="btn btn-primary">Register</button>
-                                            </NavLink>
+                                            <button
+                                                onClick={showRegisterModal}
+                                                className="btn btn-primary">
+                                                Register
+                                            </button>
                                         </li>
                                     </>
                                 }

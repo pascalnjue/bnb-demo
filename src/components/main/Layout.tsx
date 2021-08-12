@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Login from "../auth/Login";
 import PasswordReset from "../auth/PasswordReset";
+import Register from "../auth/Register";
 
 const Layout = (props: {title: string, children: any}) => {
     const {title, children} = props;
@@ -24,6 +25,7 @@ const Layout = (props: {title: string, children: any}) => {
 
             {/* global modals */}
             <Login/>
+            <Register/>
             <PasswordReset/>
         </>
     );
