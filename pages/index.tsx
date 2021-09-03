@@ -14,7 +14,7 @@ function Home(props: {featuredLocations: Location[], featuredListings: Listing[]
     return (
         <Layout title={homePage.title}>
             <Banner/>
-            <div className="container">
+            <div className="container mt-5">
                 <SearchForm/>
             </div>
             <FeaturedLocations featuredLocations={featuredLocations}/>

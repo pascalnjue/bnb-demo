@@ -43,3 +43,7 @@ a {
 .cursor-pointer {
   cursor: pointer !important;
 }
+
+.slick-list {
+  border-radius: $rounded-border-radius;
+}
